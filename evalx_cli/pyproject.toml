@@ -1,0 +1,27 @@
+[tool.poetry]
+package-mode = false
+
+[project]
+name = "evalx_cli"
+version = "0.1.0"
+description = "CLI for EvalX - Initialize and manage evaluations"
+authors = [
+    {name = "Apoorva Sareen",email = "apoorva.sareen@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11.9,<3.12"
+dependencies = [
+    "click (>=8.1.0,<9.0.0)",
+    "requests (>=2.31.0,<3.0.0)",
+    "pydantic (>=2.0.0,<3.0.0)",
+    "pydantic-settings (>=2.0.0,<3.0.0)",
+    "python-dotenv (>=1.0.0,<2.0.0)"
+]
+
+[project.scripts]
+evalx = "evalx_cli.cli:main"
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

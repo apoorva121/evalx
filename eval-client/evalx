@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Wrapper script to call evalx CLI from eval-client directory
+
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+EVALX_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+# Source the evalX root .env if it exists and export variables
+if [ -f "$EVALX_ROOT/.env" ]; then
+    set -a  # Mark all variables for export
+    source "$EVALX_ROOT/.env"
+    set +a  # Stop marking for export
+fi
+
+# Call the main evalx script
+exec "$EVALX_ROOT/evalx" "$@"

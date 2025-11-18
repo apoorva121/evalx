@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# EvalX CLI entrypoint script for DEVELOPMENT ONLY.
+#
+# WARNING: This script is for local development.
+# In production, install evalx_cli and evalx_sdk as proper packages.
+
+# Get script directory
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Check if running in development mode
+if [ "$EVALX_DEV_MODE" != "true" ]; then
+    echo "ERROR: This script is for development only." >&2
+    echo "Set EVALX_DEV_MODE=true in .env or install evalx_cli as a package." >&2
+    exit 1
+fi
+
+# Add paths and run via poetry (run from original directory to preserve CWD)
+export PYTHONPATH="$SCRIPT_DIR/evalx_sdk:$SCRIPT_DIR/evalx_cli:$PYTHONPATH"
+exec "$SCRIPT_DIR/evalx_cli/.venv/bin/python" -m evalx_cli.cli "$@"
