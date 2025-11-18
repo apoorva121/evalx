@@ -6,7 +6,7 @@ name = "evalx_sdk"
 version = "0.1.0"
 description = "Python SDK for EvalX - Context management for evaluation tracking"
 authors = [
-    {name = "Apoorva Sareen",email = "apoorva.sareen@gmail.com"}
+    {name = "Apoorva Sareen",email = "apoorva@users.noreply.github.com"}
 ]
 readme = "README.md"
 requires-python = ">=3.11.9,<3.12"

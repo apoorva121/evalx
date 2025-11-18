@@ -6,7 +6,7 @@ name = "evalx_cli"
 version = "0.1.0"
 description = "CLI for EvalX - Initialize and manage evaluations"
 authors = [
-    {name = "Apoorva Sareen",email = "apoorva.sareen@gmail.com"}
+    {name = "Apoorva Sareen",email = "apoorva@users.noreply.github.com"}
 ]
 readme = "README.md"
 requires-python = ">=3.11.9,<3.12"

@@ -6,7 +6,7 @@ name = "eval-client"
 version = "0.1.0"
 description = ""
 authors = [
-    {name = "Apoorva Sareen",email = "apoorva.sareen@gmail.com"}
+    {name = "Apoorva Sareen",email = "apoorva@users.noreply.github.com"}
 ]
 readme = "README.md"
 requires-python = ">=3.11.9,<3.12"
