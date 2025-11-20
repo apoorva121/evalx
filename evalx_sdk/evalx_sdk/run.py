@@ -75,6 +75,7 @@ class EvalRun:
         self.metadata = metadata or {}
         self._original_run_experiment = None
         self._original_dataset_run_experiment = None
+        self._original_trace_dataset_run_evaluation = None
 
         self.run_id: Optional[str] = None
         self.client: Optional[EvalXRunClient] = None
@@ -121,7 +122,7 @@ class EvalRun:
             )
             return self
 
-        # Monkey-patch langfuse.run_experiment to intercept calls
+        # Monkey-patch langfuse.run_experiment and TraceDataset.run_experiment to intercept calls
         try:
             import langfuse
 
@@ -142,6 +143,17 @@ class EvalRun:
                 )
         except ImportError:
             pass  # Langfuse not installed, skip patching
+
+        # Patch TraceDataset's run_evaluation
+        try:
+            from evalx_sdk.trace_dataset import TraceDataset
+
+            self._original_trace_dataset_run_evaluation = TraceDataset.run_evaluation
+            TraceDataset.run_evaluation = self._create_wrapper(
+                self._original_trace_dataset_run_evaluation
+            )
+        except ImportError:
+            pass  # TraceDataset not available
 
         # Initialize client
         self.client = EvalXRunClient(
@@ -183,6 +195,15 @@ class EvalRun:
                 langfuse.LangfuseDataset.run_experiment = (
                     self._original_dataset_run_experiment
                 )
+        except ImportError:
+            pass
+
+        # Restore TraceDataset's run_evaluation
+        try:
+            from evalx_sdk.trace_dataset import TraceDataset
+
+            if self._original_trace_dataset_run_evaluation:
+                TraceDataset.run_evaluation = self._original_trace_dataset_run_evaluation
         except ImportError:
             pass
 

@@ -41,7 +41,7 @@ with EvalRun():
     )
 
     # Use format method to display results within context
-    print(result.format())
+    print(result.format(include_item_results=True))
 
     # Ensure all events are flushed before context exits
     langfuse.flush()

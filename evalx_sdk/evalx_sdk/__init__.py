@@ -9,6 +9,18 @@ from evalx_sdk.introspection import (
     extract_dataset_metadata,
     extract_experiment_metadata,
 )
+from evalx_sdk.trace_dataset import (
+    TraceToDatasetBuilder,
+    TraceDataset,
+    TraceData,
+    TraceCore,
+    TraceIO,
+    TraceMetadata,
+    ObservationData,
+)
+
+# Re-export Langfuse experiment classes for compatibility
+from langfuse.experiment import Evaluation, ExperimentResult, ExperimentItemResult
 
 __version__ = "0.1.0"
 
@@ -23,4 +35,15 @@ __all__ = [
     "extract_function_metadata",
     "extract_dataset_metadata",
     "extract_experiment_metadata",
+    "TraceToDatasetBuilder",
+    "TraceDataset",
+    "TraceData",
+    "TraceCore",
+    "TraceIO",
+    "TraceMetadata",
+    "ObservationData",
+    # Langfuse experiment classes
+    "Evaluation",
+    "ExperimentResult",
+    "ExperimentItemResult",
 ]
